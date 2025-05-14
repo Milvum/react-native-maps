@@ -144,7 +144,10 @@ const NSInteger AIRMapMaxZoomLevel = 20;
             [self insertReactSubview:(UIView *)childSubviews[i] atIndex:atIndex];
         }
     }
-    [_reactSubviews insertObject:(UIView *)subview atIndex:(NSUInteger) atIndex];
+    if (subview != nil) {
+        NSUInteger safeIndex = MIN(atIndex, _reactSubviews.count);
+        [_reactSubviews insertObject:(UIView *)subview atIndex:safeIndex];
+    }
 }
 #pragma clang diagnostic pop
 
@@ -175,7 +178,9 @@ const NSInteger AIRMapMaxZoomLevel = 20;
             [self removeReactSubview:(UIView *)childSubviews[i]];
         }
     }
-    [_reactSubviews removeObject:(UIView *)subview];
+    if (subview != nil) {
+        [_reactSubviews removeObject:(UIView *)subview];
+    }
 }
 #pragma clang diagnostic pop
 
