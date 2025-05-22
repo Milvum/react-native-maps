@@ -687,6 +687,13 @@ public class MapMarker extends MapFeature {
         return BitmapDescriptorFactory.fromResource(getDrawableResourceByName(name));
     }
 
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        this.height = b-t;
+        this.width = r-l;
+    }
+
     public static Map<String, Object> getExportedCustomBubblingEventTypeConstants() {
         MapBuilder.Builder<String, Object> builder = MapBuilder.builder();
         builder.put(OnPressEvent.EVENT_NAME, MapBuilder.of("registrationName", OnPressEvent.EVENT_NAME));
